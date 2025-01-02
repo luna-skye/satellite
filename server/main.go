@@ -32,7 +32,6 @@ func StartFiberServer() {
   engine.AddFunc("getIconName", func(input string) string { return strings.Split(input, "_")[1] })
   engine.AddFunc("servicePartial", func(name string) string { return fmt.Sprintf("partials/service/%s", name) })
   engine.AddFunc("getServiceResults", func(service database.Service) fiber.Map {
-    //  TODO: implement dynamic results
     s := services.GetResults{}
     serviceMethod := reflect.ValueOf(s).MethodByName(utils.SnakeToPascalCase(service.Type))
 
@@ -40,8 +39,7 @@ func StartFiberServer() {
       results := serviceMethod.Call([]reflect.Value{reflect.ValueOf(service)})
 
       if len(results) > 0 {
-        if returnMap, ok := results[0].Interface().(map[string]interface{}); ok {
-          log.Println(returnMap)
+        if returnMap, ok := results[0].Interface().(fiber.Map); ok {
           return returnMap
         }
 
