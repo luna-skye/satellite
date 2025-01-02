@@ -1,0 +1,84 @@
+<div class="view">
+  <div id="backdrop-bg"></div>
+
+  <div class="content">
+    <img id="logo" src="./images/logo.svg" alt="ORBITAL Logo" />
+
+    <p class="list-name">Bookmarks</p>
+    <div class="list bookmarks">
+      {{#each bookmarks}}
+        {{> 'partials/bm-category' this }}
+      {{/each}}
+    </div>
+
+    <p class="list-name">Services</p>
+    <div class="list services">
+      {{#each services}}
+        <a class="service" href={{URL}}>
+          {{> (servicePartial type) results=(getServiceResults this) }}
+        </a>
+      {{/each}}
+    </div>
+
+  </div>
+</div>
+
+
+<style>
+.content {
+  --content-width: 1200px;
+  --content-padding: 16px;
+
+  display: grid;
+  align-content: start;
+  width: calc(var(--content-width) - (var(--content-padding) * 2));
+  height: 100vh;
+  padding: 64px 0;
+  margin: auto;
+  box-sizing: border-box;
+  overflow: scroll;
+
+  > #logo {
+    width: 64px;
+    height: 64px;
+    margin: auto;
+    text-align: center;
+  }
+
+  > .list-name {
+    margin: 16px;
+    text-align: center;
+  }
+
+  > .bookmarks {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /*align-items: flex-start;*/
+    gap: 8px;
+  }
+
+  > .services {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /*align-items: flex-start;*/
+    gap: 8px;
+  }
+}
+
+
+@media (max-width: 1200px) {
+  .content {
+    width: 100vw;
+    padding: 64px var(--content-padding);
+  }
+}
+@media (max-width: 800px) {
+  .content {
+    padding-bottom: 10vh;
+    .bookmarks, .services { grid-template-columns: repeat(2, 1fr); }
+  }
+}
+@media (max-width: 600px) {
+  .content .bookmarks, .content .services { grid-template-columns: repeat(1, 1fr); }
+}
+</style>

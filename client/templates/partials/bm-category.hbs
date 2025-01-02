@@ -1,0 +1,21 @@
+<div class="bm-category">
+  <p class="name">
+    {{> 'partials/icon'
+      type=(getIconType icon)
+      icon=(getIconName icon)
+    }}
+    {{name}}
+  </p>
+
+  <div class="links">
+    {{#each links}}
+    <a class="link" href={{link}}>
+      {{> 'partials/icon'
+        type=(getIconType icon)
+        icon=(getIconName icon)
+      }}
+      {{name}}
+    </a>
+    {{/each}}
+  </div>
+</div>

@@ -1,0 +1,37 @@
+.service {
+  background: hsla(var(--stl-surface-crust), 0.6);
+  backdrop-filter: blur(1em);
+  border-radius: 8px;
+  border: 2px solid hsl(var(--stl-surface-surface0));
+  transition: 0.15s ease-in-out;
+
+  display: grid;
+  gap: 8px;
+  box-sizing: border-box;
+
+  text-decoration: none;
+  color: hsl(var(--stl-surface-subtext1));
+
+  > .name {
+    padding: 8px;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 8px;
+    align-items: center;
+    transition: 0.15s ease-in-out;
+
+    > img {
+      width: 32px;
+      height: 32px;
+      transition: 0.15s ease-in-out;
+    }
+  }
+
+  &:hover {
+    background: hsla(var(--stl-surface-base), 0.8);
+    border: 2px solid hsl(var(--stl-surface-surface1));
+
+    > .name { padding-left: 16px; }
+    > .name > img { filter: drop-shadow(0 0 4px hsl(var(--stl-surface-overlay0))); }
+  }
+}
